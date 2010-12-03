@@ -1,0 +1,13 @@
+{
+  "name": "Link Highlighter",
+  "version": "1.0",
+  "description": "Highlights different links on a page based on their file extensions.",
+  	 
+  "browser_action": {
+    "default_icon": "icon.png",
+	"popup": "popup.html"
+  },
+  "permissions": [
+     "tabs", "http://*/*", "https://*/*"
+  ]
+}

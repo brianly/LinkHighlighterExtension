@@ -1,0 +1,77 @@
+<html>
+<head>
+<style>
+body {
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+  background: white;
+}
+
+div:first-child {
+  margin-top: 0px;
+}
+
+div {
+  cursor: pointer;
+  text-align: center;
+  padding: 1px 3px;
+  font-family: sans-serif;
+  font-size: 0.8em;
+  width: 100px;
+  margin-top: 1px;
+  background: #cccccc;
+}
+div:hover {
+  background: #aaaaaa;
+}
+#red {
+  border: 1px solid red;
+  color: red;
+}
+#blue {
+  border: 1px solid blue;
+  color: blue;
+}
+#green {
+  border: 1px solid green;
+  color: green;
+}
+#yellow {
+  border: 1px solid yellow;
+  color: yellow;
+}
+</style>
+<script>
+
+// Inject jQuery so that it is available
+chrome.tabs.executeScript(null, {file: 'jquery.js'});
+
+function click(item) {
+  styleLink(item.id, '#FFFF99', 'black') 
+  window.close()
+}
+
+function styleLink(extension, bg, color) {
+	// Generate script to inject and execute
+	var script = "$('body a[href$=\"" + extension +"\"]').css('background-color','" + bg + "');"
+	script += "$('body a[href$=\"" + extension +"\"]').css('color','" + color + "');"
+	script += "$('body a[href$=\"" + extension +"\"]').css('font-weight','bold');"
+	
+	// Execute script
+    chrome.tabs.executeScript(null, {code:script})
+}
+</script>
+
+</head>
+<body>
+	<p>Highlight File Type</p>
+	<div onclick="click(this)" id="zip">ZIP</div>
+	<div onclick="click(this)" id="xls">XLS</div>
+	<div onclick="click(this)" id="doc">DOC</div>
+	<div onclick="click(this)" id="htm">HTM</div>
+	<div onclick="click(this)" id="html">HTML</div>
+	<div onclick="click(this)" id="pdf">PDF</div>
+	<div onclick="click(this)" id="avi">AVI</div>
+	<div onclick="click(this)" id="mpg">MPG</div>
+</body>
